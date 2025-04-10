@@ -1,7 +1,28 @@
 # LAMMPS Installation and Configurations
 I have compiled several installation configurations to enhance LAMMPS capabilitties and/or performance. I have tested these installations on a Windows 10 WSL2 Debian. These configurations are transferrable for a native Linux installation, but this is also a validation of their implementation in WSL. This section focuses on the installation configurations for LAMMPS specifically.<br> 
-<br>
-For readability, I have grouped some bash commands in the same code block. But as a result, if you copy the whole block and paste into terminal, it will not like that. So, you in blocks that contain multiple lines of commands, you should copy them individually line-by-line. Finally commands that were too long, were broken up into multiple lines using `/`.
+
+For readability, I have grouped some bash commands in the same code block. But as a result, if you copy the whole block and paste into terminal, it will not like that. So, you in blocks that contain multiple lines of commands, you should copy them individually line-by-line. Finally commands that were too long, were broken up into multiple lines using `/`. In some cases, I use the notation ``>>`` to show the return from the terminal after the previous line's command.
+
+## Check System Resources available
+1. Check RAM available to WSL
+```
+free -h
+```
+Output
+```
+               total        used        free      shared  buff/cache   available
+Mem:            15Gi       2.0Gi        13Gi       2.7Mi       785Mi        13Gi
+Swap:          4.0Gi          0B       4.0Gi
+```
+It has 15GB in my case.
+
+2. Check how many CPUs WSL has access to:
+```
+nproc
+>> 24
+```
+It has access to 24 in my case.
+
 
 ## Install MPI
 MPI: Message Passing Interface is a library designed to facilitate parallelization of tasks/computations (e.g., LAMMPS). It shares data between processes that do not share physical memory (e.g., computations ocated in different nodes). 
@@ -12,18 +33,12 @@ sudo apt-get install openmpi-bin libopenmpi-dev
 Verify the installation:
 ```
 which mpirun
-```
-Should return:
-```
-usr/bin/mpirun
+>> usr/bin/mpirun
 ```
 And
 ```
 mpirun --version
-```
-Should returrn:
-```
-mpirun (Open MPI) 4.1.4
+>> mpirun (Open MPI) 4.1.4
 ```
 
 ## KOKKOS-CUDA-OMP
