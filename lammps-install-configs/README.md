@@ -117,7 +117,7 @@ mkdir test
 cd test
 touch in.kokkos-test.lammps
 ```
-Use a text editor and add the following to the LAMMPS input file:
+Use a text editor and add the following to the LAMMPS input file, notice the command `package kokkos` which indicates for LAMMPS to use the KOKKOS package which we just built into the LAMMPS executable.
 ```
 package kokkos
 # simple LJ system
