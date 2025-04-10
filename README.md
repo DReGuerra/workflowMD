@@ -7,7 +7,7 @@ andre.guerra@mail.mcgill.ca
 ### Description:
 This is repository contains an introduction to molecular dynamics (MD) simulations using [PACKMOL](http://leandro.iqm.unicamp.br/m3g/packmol/examples.shtml), [Moltemplate](https://www.moltemplate.org/), and [LAMMPS](https://www.lammps.org/). I have tried to demonstrate a workflow for simulating a simple system found in `project/`. This workflow can be modified and extented as desired for your project. The system molecule coordinates are defined in `1_packmol`, and the PACKMOL software is used to populate a simulation box. Next, the system's data file is generated with Moltemplate in `2_moltemplate`. Finally, the LAMMPS simulation is conducted in `3_lammps`. This tree structure is designed to contain the workflow, segregate files used/produced by different software packages, and ultimately to organize our project space. The bash script `run.sh` executes the workflow.
 
-Below you will see a list of the contents of the repository. The markdown file `main.md` will be the hub where all information regaring this molecular dynamics workshop is found. So, let's continue this over [there](https://github.com/DReGuerra/molecular_dynamics_workshop/workflow.md).
+Below you will see a list of the contents of the repository. The markdown file `main.md` will be the hub where all information regaring this molecular dynamics workshop is found. So, let's continue this over [there](https://github.com/DReGuerra/molecular_dynamics_workshop/blob/main/workflow.md).
 
 ---
 ## Core Contents
