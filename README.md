@@ -19,3 +19,33 @@ Below you will see a list of the contents of the repository. The markdown file `
 6. `main.md` $\rightarrow$ this file contains the main content of this workshop
 7. `run.sh` $\rightarrow$ bash script that runs the MD workflow
 8. `run_cvmfs.sh` $\rightarrow$ modified bash script that runs the MD workflow on a cluster with [slurm scheduler](https://slurm.schedmd.com/documentation.html) and the [CVMFS](https://cernvm.cern.ch/fs/) stack (for reference and for my own testing)
+
+## Tree Structure
+<pre>
+workflowMD/
+├── lammps-install-configs/
+│   ├── test/
+│   │   ├── in.kokkos-test.lammps
+│   │   └── log.lammps
+│   └── README.md
+├── project/
+│   ├── 1_packmol/
+│   │   ├── in.2pack_H2O.inp
+│   │   ├── out_packed.xyz
+│   │   └── water.xyz
+│   ├── 2_moltemplate/
+│   │   └── input_files/
+│   │       ├── system_H2O.lt
+│   │       ├── system.lt
+│   │       └── water.tip4p-ice.lt
+│   ├── 3_lammps/
+│   │   ├── data/
+│   │   ├── fix/
+│   │   ├── restart/
+│   │   ├── traj/
+│   │   ├── log.npt.lammps
+│   │   └── run.ag.lammps
+│   ├── run_cvmfs.sh
+│   └── run.sh
+└── README.md
+</pre>
