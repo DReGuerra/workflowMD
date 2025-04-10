@@ -1,0 +1,42 @@
+  In case it is helpful, here is a list of papers relevant to
+  the implementation of the OPLSAA force field used in moltemplate.  
+  The OPLS force field parameters in moltemplate were not taken
+  directly from the original OPLS papers.  Instead, they were obtained
+  from files that are distributed with the TINKER software:
+  (https://github.com/TinkerTools/tinker/blob/release/params/oplsaa.prm)
+  So if you use the OPLSAA or OPLSUA force fields with moltemplate,
+  please also cite the TINKER paper:
+
+  - J.A. Rackers, Z. Wang, C. Lu, M.L. Laury, L.Lagardère, M.J. Schnieders,
+    J-P. Piquemal, P. Ren, and J.W. Ponder
+    J.Chem.Theory.Comput.,14(10):5273-5289, 2018
+    https://doi.org/10.1021/acs.jctc.8b00529
+
+  As for OPLS, any of these papers can be used to cite
+  the version of OPLS provided by moltemplate:
+  - W.L. Jorgensen and J. Tirado–Rives
+    J. Comp. Chem., Volume 26, Issue 16 p. 1689-1700, 2005
+    https://doi.org/10.1002/jcc.20297
+  - W.L. Jorgensen and J. Tirado–Rives
+    Proc. Nat. Acad. Sci, 102 (19) 6665-6670, 2005
+    https://doi.org/10.1073/pnas.0408037102
+  - W.L. Jorgensen, D.S. Maxwell, and J. Tirado-Rives
+    J. Am. Chem. Soc. 1996, 118, 11225-11236.
+    https://doi.org/10.1021/ja9621760
+
+  Incidentally, parameters used by both TINKER and moltemplate were taken from:
+  - W. L. Jorgensen, July 2008,
+   "OPLS All-Atom Parameters for Organic Molecules, Ions,
+    Peptides & Nucleic Acids, July 2008", BOSS Version 4.8
+  ...although I doubt you need to cite this.
+  (This document no longer appears to be publicly available, however several
+   other versions of it can be found at http://zarbi.chem.yale.edu/doc/)
+
+  Many additional OPLS papers have been published by the Jorgensen lab
+  over the years, and the "oplsaa.lt" file probably contains parameters
+  from several of them:
+    http://zarbi.chem.yale.edu/publications.html
+  However, depending on the type of simulation you want to run,
+  only a small subset of these will be relevant to your work (if any).
+  Since the force field parameters used here were taken from the 2008 version of
+  BOSS, papers published after that time are not relevant to moltemplate users.

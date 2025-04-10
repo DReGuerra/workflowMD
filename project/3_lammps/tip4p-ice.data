@@ -1,0 +1,10 @@
+bond_coeff      1 600.0 0.9572      # K of harmonic, ro of OH bond
+angle_coeff     1 75.0 104.52       # K of harmonic, theta of HOH angle
+pair_coeff      1 1 0.21084 3.1668  # LJ eps, sig of O-O
+pair_coeff      1 2 0 0             # LJ eps, sig of O-H
+pair_coeff      2 2 0 0             # LJ eps, sig of H-H
+
+group           water type 1 2      # group H2O atoms
+
+set type 1 charge -1.1794           # O charge
+set type 2 charge  0.5897           # H charge

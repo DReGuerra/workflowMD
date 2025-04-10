@@ -1,0 +1,19 @@
+#-------------------------------------------------------------------------------------------------------
+# Author          : Andre Guerra
+# Date            : August, 2021
+# Description     : system definition
+# Notes           : input parameter to moltemplate.sh
+#-------------------------------------------------------------------------------------------------------
+
+# import molecule definition(s)
+import "water.tip4p-ice.lt"
+
+# create the types of molecules (in the same order as defined by packmol's geometry)
+waters = new TIP4Pice [850]
+
+# periodic boundary conditions
+write_once("Data Boundary") {
+    -15.5 15.5 xlo xhi
+    -15.5 15.5 ylo yhi
+    -15.5 15.5 zlo zhi
+}
