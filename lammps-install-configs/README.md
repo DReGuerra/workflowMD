@@ -251,6 +251,7 @@ cmake ../cmake \
 ```
 This will configure the build to activate the KOKKOS package, CUDA GPU support with the AMPERE86 architechture (just as above), but also activate the OpenMP support for threading. The target location for the executable is configured to be `$HOME/lammps_kokkos_omp_cuda`. Don't forget to repeat `Step 5` replacing wherever necessary to reflect the new target location.<br>
 
+### Testing KOKKOS-CUDA-OMP
 In this LAMMPS build, run the test simulation using:
 ```
 mpirun -np 1 lmp_kokkos_cuda_omp -k on g 1 t 2 -sf kk < in.kokkos-test.lammps
@@ -274,6 +275,7 @@ cmake ../cmake \
 ```
 Again, don't forget to modify `Step 5` to reflect the new target location.<br>
 
+### Testing KOKKOS-OMP
 In this LAMMPS build, run the test simulation using:
 ```
 mpirun -np 1 lmp_kokkos_omp -k on t 2 -sf kk < in.kokkos-test.lammps
