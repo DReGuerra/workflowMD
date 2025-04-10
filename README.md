@@ -12,7 +12,7 @@ Below you will see a list of the contents of the repository. The markdown file `
 ---
 ## Core Contents
 1. `project/` $\rightarrow$ the main sample MD project files to test workflowMD
-2. `lammps-install-configs` $\rightarrow$ configurations and installation details for LAMMPS
+2. `lammps-build-configs` $\rightarrow$ configurations and installation details for LAMMPS
 3. `1_packmol/` $\rightarrow$ files associated with PACKMOL
 4. `2_moltemplate/` $\rightarrow$ files associated with Moltemplate
 5. `3_lammps/` $\rightarrow$ files associated with LAMMPS
@@ -23,7 +23,7 @@ Below you will see a list of the contents of the repository. The markdown file `
 ## Tree Structure
 <pre>
 workflowMD/
-├── lammps-install-configs/
+├── lammps-build-configs/
 │   ├── test/
 │   │   ├── in.kokkos-test.lammps
 │   │   └── log.lammps
