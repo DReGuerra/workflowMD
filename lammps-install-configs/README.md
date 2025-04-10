@@ -90,7 +90,6 @@ Build LAMMPS with KOKKOS (acceleration package), OpenMP (multithreading CPUs), a
 ```
 cmake ../cmake \
   -D PKG_KOKKOS=on \
-  -D Kokkos_ENABLE_OPENMP=on \
   -D Kokkos_ENABLE_CUDA=on \
   -D Kokkos_ARCH_AMPERE86=on \
   -D CMAKE_BUILD_TYPE=Release \
@@ -231,3 +230,52 @@ Neighbor list builds = 91
 Dangerous builds = 0
 Total wall time: 0:00:01
 ```
+
+## KOKKOS-CUDA-OMP
+You can repeat the procedure above using the flag `-D Kokkos_ENABLE_OPENMP=on` to build LAMMPS using the KOKKOS acceleration package with OpenMP to achieve parallelism ussing CPUs in addition to GPU.<br>
+
+You can repeat the steps above, and in `Step 4` you can substitute the build command with:
+Build LAMMPS with KOKKOS (acceleration package), OpenMP (multithreading CPUs), and CUDA (NVIDIA GPU) (for my specific RTX 3070 we use the AMPERE86 architecture).
+```
+cmake ../cmake \
+  -D PKG_EXTRADUMP=on \
+  -D PKG_MOLECULE=on \
+  -D PKG_RIGID=on \
+  -D PKG_KOKKOS=on \
+  -D Kokkos_ENABLE_CUDA=on \
+  -D Kokkos_ENABLE_OPENMP=on \
+  -D Kokkos_ARCH_AMPERE86=on \
+  -D CMAKE_BUILD_TYPE=Release \
+  -D BUILD_SHARED_LIBS=off \
+  -D CMAKE_INSTALL_PREFIX=$HOME/lammps_kokkos_omp_cuda
+```
+This will configure the build to activate the KOKKOS package, CUDA GPU support with the AMPERE86 architechture (just as above), but also activate the OpenMP support for threading. The target location for the executable is configured to be `$HOME/lammps_kokkos_omp_cuda`. Don't forget to repeat `Step 5` replacing wherever necessary to reflect the new target location.<br>
+
+In this LAMMPS build, run the test simulation using:
+```
+mpirun -np 1 lmp_kokkos_cuda_omp -k on g 1 t 2 -sf kk < in.kokkos-test.lammps
+```
+In this command, `mpirun -np 1` initiates 1 MPI task, points to the executable of the LAMMPS configuration we just built `lmp_kokkos_cuda_omp`, `-k on` turns KOKKOS package on, `g 1` tells KOKKOS to use up to `1` GPUs, `t 2` indicates how many CPU threads are available to KOKKOS (this can be any number up to the physical maximum threads of your CPU), and `-sf kk` tell KOKKOS to automatically substitute all styles compatible with the acceleration package.
+
+## KOKKOS-OMP
+If you don't have a GPU, you can repeat the procedure above using the flag `-D Kokkos_ENABLE_OPENMP=on` to build LAMMPS using the KOKKOS acceleration package with OpenMP to achieve parallelism ussing CPUs and omit the flags `-D Kokkos_ENABLE_CUDA=on` and `-D Kokkos_ARCH_AMPERE86=on` which are only necessary for NVIDIA GPUs.<br>
+
+Repeating `Step 4` with:
+```
+cmake ../cmake \
+  -D PKG_EXTRADUMP=on \
+  -D PKG_MOLECULE=on \
+  -D PKG_RIGID=on \
+  -D PKG_KOKKOS=on \
+  -D Kokkos_ENABLE_OPENMP=on \
+  -D CMAKE_BUILD_TYPE=Release \
+  -D BUILD_SHARED_LIBS=off \
+  -D CMAKE_INSTALL_PREFIX=$HOME/lammps_kokkos_omp
+```
+Again, don't forget to modify `Step 5` to reflect the new target location.<br>
+
+In this LAMMPS build, run the test simulation using:
+```
+mpirun -np 1 lmp_kokkos_omp -k on t 2 -sf kk < in.kokkos-test.lammps
+```
+This command is similar to the one in the previous section, except that it references the KOKKOS-OMP version of LAMMPS that we just built using `lmp_kokkos_omp`, and it omits the GPU references since this build does not have CUDA activated and will not look for GPU hardware.
