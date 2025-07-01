@@ -90,17 +90,19 @@ Build LAMMPS with KOKKOS (acceleration package), OpenMP (multithreading CPUs), a
 ```
 cmake ../cmake \
   -D PKG_KOKKOS=on \
+  -D Kokkos_ENABLE_OPENMP=on \
   -D Kokkos_ENABLE_CUDA=on \
   -D Kokkos_ARCH_AMPERE86=on \
   -D CMAKE_BUILD_TYPE=Release \
   -D BUILD_SHARED_LIBS=off \
-  -D CMAKE_INSTALL_PREFIX=$HOME/lammps_kokkos_cuda
+  -D CMAKE_INSTALL_PREFIX=$HOME/lammps_kokkos_omp_cuda
 ```
 Add extra build configurations if desired, these are sample ones:
 ```
+  -D DOWNLOAD_PLUMED=yes \
   -D PKG_EXTRADUMP=on \
   -D PKG_MOLECULE=on \
-  -D PKG_RIGID=on 
+  -D PKG_RIGID=on
 ```
 Still in the same directory `build`:
 ```
