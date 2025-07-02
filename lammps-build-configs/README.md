@@ -283,3 +283,52 @@ In this LAMMPS build, run the test simulation using:
 mpirun -np 1 lmp_kokkos_omp -k on t 2 -sf kk < in.kokkos-test.lammps
 ```
 This command is similar to the one in the previous section, except that it references the KOKKOS-OMP version of LAMMPS that we just built using `lmp_kokkos_omp`, and it omits the GPU references since this build does not have CUDA activated and will not look for GPU hardware.
+
+## PLUMED
+PLUMED is an open-source software used to analyze molecular simulations using enahanced sampling techniques and several free energy calculation methods to determine the system's free energy landscape. One oif tTo add PLUMED capability to the LAMMPS build, you need to separately instal PLUMED, then compile LAMMPS with the PLUMED package and point it to the PLUMED installation. Below are the steps to achive this installation. 
+
+### PLUMED
+Make sure your system has install the BLAS, LAPACK, and GSL libraries:
+```
+sudo apt update
+sudo apt install libblas-dev liblapack-dev libgsl-dev
+```
+
+Download and install PLUMED from source.
+```
+wget https://github.com/plumed/plumed2/releases/download/v2.9.0/plumed-2.9.0.tgz
+tar -xzf plumed-2.9.0.tgz
+cd plumed-2.9.0
+./configure --prefix=$HOME/plumed-install
+make -j4
+make install
+```
+
+Add the foloowing variables to your `PATH` by adding these lines to the end of `.bashrc`:
+```
+export PATH=$HOME/plumed-install/bin:$PATH
+export PLUMED_KERNEL=$HOME/plumed-install/lib/libplumedKernel.so
+```
+
+If you're building LAMMPS with CMake (recommended), you don’t need to patch it manually (as described in the [PLUMED installation doc](https://www.plumed.org/doc-v2.9/user-doc/html/_installation.html)). Instead, you can indicate to the LAMMPS compiler the location of the PLUMED source. To do this, you can repeat the LAMMPS installation as above and in `Step 4` use the following build command:
+```
+cmake ../cmake \
+  -D PKG_KOKKOS=on \
+  -D Kokkos_ENABLE_OPENMP=on \
+  -D Kokkos_ENABLE_CUDA=on \
+  -D Kokkos_ARCH_AMPERE86=on \
+  -D CMAKE_BUILD_TYPE=Release \
+  -D BUILD_SHARED_LIBS=off \
+  -D DOWNLOAD_PLUMED=yes \
+  -D PKG_PLUMED=ON \
+  -D PLUMED_ROOT=$HOME/plumed-install \
+  -D PKG_EXTRADUMP=on \
+  -D PKG_MOLECULE=on \
+  -D PKG_RIGID=on \
+  -D CMAKE_INSTALL_PREFIX=$HOME/lammps_kokkos_omp_cuda_plumed
+```
+
+In this command, I specified the location of the PLUMED installation using:<br>
+`-D PLUMED_ROOT=$HOME/plumed-install`<br>
+
+Again, don't forget to modify `Step 5` to reflect the new target location.<br>
