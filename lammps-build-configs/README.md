@@ -287,7 +287,7 @@ This command is similar to the one in the previous section, except that it refer
 ## PLUMED
 PLUMED is an open-source software used to analyze molecular simulations using enahanced sampling techniques and several free energy calculation methods to determine the system's free energy landscape. One oif tTo add PLUMED capability to the LAMMPS build, you need to separately instal PLUMED, then compile LAMMPS with the PLUMED package and point it to the PLUMED installation. Below are the steps to achive this installation. 
 
-### PLUMED
+### PLUMED from source
 Make sure your system has install the BLAS, LAPACK, and GSL libraries:
 ```
 sudo apt update
@@ -310,6 +310,7 @@ export PATH=$HOME/plumed-install/bin:$PATH
 export PLUMED_KERNEL=$HOME/plumed-install/lib/libplumedKernel.so
 ```
 
+### LAMMPS build with PLUMED PKG
 If you're building LAMMPS with CMake (recommended), you don’t need to patch it manually (as described in the [PLUMED installation doc](https://www.plumed.org/doc-v2.9/user-doc/html/_installation.html)). Instead, you can indicate to the LAMMPS compiler the location of the PLUMED source. To do this, you can repeat the LAMMPS installation as above and in `Step 4` use the following build command:
 ```
 cmake ../cmake \
