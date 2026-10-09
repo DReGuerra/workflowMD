@@ -75,7 +75,7 @@ echo ">>>"
 
 cd 3_lammps/
 # run 
-lmp_serial -in run.ag.in -log log.$ensemble.lammps \
+lmp_serial -in in.run.lammps -log log.$ensemble.lammps \
 -v gas $gas \
 -v wat $water \
 -v seed $seed \

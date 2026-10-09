@@ -46,7 +46,7 @@ workflowMD/
 │   │   ├── restart/
 │   │   ├── traj/
 │   │   ├── log.npt.lammps
-│   │   └── run.ag.lammps
+│   │   └── in.run.lammps
 │   ├── run_cvmfs.sh
 │   └── run.sh
 └── README.md

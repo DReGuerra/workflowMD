@@ -89,7 +89,7 @@ cd 3_lammps/
 # load lammps module
 module load lammps-omp/20201029
 # run 
-srun lmp -in run.ag.in -log log.$ensemble.lammps \
+srun lmp -in in.run.lammps -log log.$ensemble.lammps \
 -v gas $gas \
 -v wat $water \
 -v seed $seed \
